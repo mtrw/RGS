@@ -26,13 +26,15 @@ To install the necessary package dependencies easily, after `source`ing tim_r_fu
 
 1) Set up your desired parameters in 0_ldprIdent_setup.R. Importantly, your reference genome file, and the file to which Long-duplication-prone regions flagged will be saved (in .rds format). You will have to provide a path to the lastz binary in 0_ldprIdent_setup.R in the variable `lastzBin`.
 
-2) Run the steps in ldprIdent_RUN.R. This will call first 0_ldprIdent_setup.R, then 1_llprIdent_selfAlignments.R, then 2_0_ldprIdent_setup.R.
+2) Run the steps in ldprIdent_RUN.R. This will call first 0_ldprIdent_setup.R, then 1_llprIdent_selfAlignments.R, then 2_0_ldprIdent_locate.R.
 
 To get tricky with the details, dig into the scripts that are called.
 
 ## Demo
 
 A demo dataset to run the scripts on is available in data/test_data. This is the first ~6 Mb of the Barley cv 'Morex' reference genome used in the release publication. The scripts left as-is will run on the demo dataset, the user only has to set the working directory to wherever the repo was cloned in the first line of ldprIdent_RUN.R, and the lastz binary.
+
+If it runs correctly, it will produce three *.dots text files in data/alignments, and a file lDPRs.rds file in the working dir. The R environment will contain an object named 'lDPRs' listing the flagged replication-prone regions' coordinates (BLAST-style, 1-based coords).
 
 ## Performance
 

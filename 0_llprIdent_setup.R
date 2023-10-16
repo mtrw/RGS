@@ -11,6 +11,8 @@ refFname <- "data/test_data/Barley_MorexV3_pseudomolecules_first2e6.fasta"
 fai <- fread(paste0(refFname,".fai"),select=1:2,col.names=c("chr","length"))
 outLDPRsFname <- "lDPRs.rds"
 
+# Plot ID process as we go?
+plotLdprId <- F
 
 # Parameter settings
 bw <- 200000 # this is the banding size, ie, how close must alignments be together to count. Narrows/widens the "band" of coinsidered alignments around the diagonal.
@@ -21,16 +23,8 @@ windowsize <- 2e6 # Can't self-align a whole chromosome without chaining or othe
 increment <- windowsize-bw # Ensures adequate overlap between windows
 cutoff <- 5 # Density cutoff for what is "dense" enough to be considered as a possible l-DPR. Best set based on density plots.
 
-
 # Lastz settings
 #lastzBin <- system("which lastz",intern = T) # Where is the binary
 gffFname <- "data/test_data/Barley_MorexV3_pseudomolecules_first2e6.gff3"
 lastzBin <- "/apps/easybuild-2022/easybuild/software/MPI/GCC/11.3.0/OpenMPI/4.1.4/LASTZ/1.04.03/bin/lastz" # Where is the binary
 lastzArgs <- "--notransition --step=500 --gapped" # Settings for alignment
-
-# Import and wrangle gff
-# gff1 <- read_gff(gffFname)
-# gff1[,description:=sub(".*description=([^;]*).*","\\1",attribute)]
-# gff1[!grepl("description=",attribute),description:=NA_character_]
-# gff1[,id:=sub(".*ID=([^;]*).*","\\1",attribute)]
-
