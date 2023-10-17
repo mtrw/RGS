@@ -154,6 +154,52 @@ l_ply(unique(fai$chr),function(c){
 
 
 
+#merge regions
+lDPRs[,ord:=NULL]
+setorder(lDPRs,chr,start)
+t <- copy(lDPRs)
+setorder(t,chr,start)
+
+r <- 1
+while(r==1){
+  print("################ NEXT ROUND ##################")
+  r <- 0
+  i <- 1
+  while( i < nrow(t) ){
+    #print(i)
+    if(t[i]$chr != t[i+1]$chr){
+      i <- i + 1
+      next
+    }
+    if(t[i]$end >= t[i+1]$start){
+      #wait()
+      r <- 1
+      print(paste0("MERGE: ",i))
+      print(t[i:(i+1)])
+      
+      t[i:(i+1)] <- data.table(
+        chr=c(t[i]$chr,NA),
+        start=c(t[i]$start,NA),
+        end=c(t[i]$end,NA)
+      )
+      
+      t <- t[!is.na(chr)]
+      
+      if(i == nrow(t)){
+        ce("Merge on last row, next! (last)")
+        next
+      } else {
+        i <- i + 1
+      }
+    }
+    i <- i+1
+  }
+}
+
+t -> lDPRs
+rm(t)
+lDPRs[,regionid:=1:.N]
+
 
 saveRDS(lDPRs,outLDPRsFname)
 

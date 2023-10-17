@@ -24,7 +24,5 @@ increment <- windowsize-bw # Ensures adequate overlap between windows
 cutoff <- 5 # Density cutoff for what is "dense" enough to be considered as a possible l-DPR. Best set based on density plots.
 
 # Lastz settings
-#lastzBin <- system("which lastz",intern = T) # Where is the binary
-gffFname <- "data/test_data/Barley_MorexV3_pseudomolecules_first2e6.gff3"
-lastzBin <- "/apps/easybuild-2022/easybuild/software/MPI/GCC/11.3.0/OpenMPI/4.1.4/LASTZ/1.04.03/bin/lastz" # Where is the binary
+lastzBin <- system("which lastz",intern = T) # Where is the lastz binary?
 lastzArgs <- "--notransition --step=500 --gapped" # Settings for alignment

@@ -34,10 +34,10 @@ To get tricky with the details, dig into the scripts that are called.
 
 A demo dataset to run the scripts on is available in data/test_data. This is the first ~6 Mb of the Barley cv 'Morex' reference genome used in the release publication. The scripts left as-is will run on the demo dataset, the user only has to set the working directory to wherever the repo was cloned in the first line of ldprIdent_RUN.R, and the lastz binary.
 
-If it runs correctly, it will produce three *.dots text files in data/alignments, and a file lDPRs.rds file in the working dir. The R environment will contain an object named 'lDPRs' listing the flagged replication-prone regions' coordinates (BLAST-style, 1-based coords).
+If it runs correctly, it will produce three *.dots text files in data/alignments, and a file lDPRs.rds file in the working dir. The R environment will contain an object named 'lDPRs' listing 13 flagged replication-prone regions' coordinates (BLAST-style, 1-based coords).
 
 ## Performance
 
-The run time of these scripts is almost entirely dependent on the complexity of the lastz alignment. On an allocation of 16 CPUs and 48 Gb RAM, the demo ran in around 30 minutes.
+The run time of these scripts is almost entirely dependent on the complexity of the lastz alignment. On an allocation of 16 CPUs and 128 Gb RAM, the demo ran in around 30 minutes.
 
 To do a full genome, it is highly recommended to use parallel processing with `mclappy`. The lines of 1_llprIdent_selfAlignments.R to [un]comment to achieve this are indicated in comments, around line 6.

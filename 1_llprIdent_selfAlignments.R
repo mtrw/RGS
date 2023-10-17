@@ -7,7 +7,7 @@ l_ply(unique(fai$chr),function(c){
     rg <- c(s,s+windowsize)
     # dev rg <- c(s,s+2000000)
     
-    fname <- paste0("data/alignments/1",c,"_",rg[1],"-",rg[2],"_bw",bw,"_dbw",dbw,"_winsize",windowsize,"_ncalcpts",qgap,".dots")
+    fname <- paste0("data/alignments/",c,"_",rg[1],"-",rg[2],"_bw",bw,"_dbw",dbw,"_winsize",windowsize,"_ncalcpts",qgap,".dots")
     ce("Searching for ",fname)
     if(!file.exists(fname) | file.size(fname) == 0){
       ce("\tFile missing or miniscule! (",fname,"); Making alignment ...")
